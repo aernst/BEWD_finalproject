@@ -30,9 +30,10 @@
 
  
 <%# @thisweek_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
+<!-- # if week != nil, then display -->
 
-<% @thisweek = Week.where(:week_num => (Date.today.strftime("%U").to_i), :user_id => current_user.id ) %>
-
+<%# if @thisweek != nil  %>
+<% if !@thisweek.nil?  %>
 
 <table>
   <thead>
@@ -50,6 +51,7 @@
   </tbody>
 </table>
 <br>
+<% end %>
 
 <%= link_to 'New Day', new_day_path %>
 
