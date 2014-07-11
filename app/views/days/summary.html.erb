@@ -1,0 +1,56 @@
+<h1>Summary</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+      <th>Task</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @days.each do |day| %>
+      <tr>
+        <td><%= day.user_id %></td>
+        <td><%= day.date %></td>
+        <td><%= day.task %></td>
+        <td><%= link_to 'Show', day %></td>
+        <td><%= link_to 'Edit', edit_day_path(day) %></td>
+        <td><%= link_to 'Destroy', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+ 
+<%# @thisweek_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
+
+<% @thisweek = Week.where(:week_num => 27, :user_id => 2 ) %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>This Week</th>
+   </tr>
+  </thead>
+    <tbody>
+    <% @thisweek.each do |week| %>
+      <tr>
+        <td><%= week.task %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Day', new_day_path %>
+
+<%= link_to 'New Week', new_week_path %>

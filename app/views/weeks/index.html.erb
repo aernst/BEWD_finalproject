@@ -1,0 +1,33 @@
+<h1>Tasks for Week</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+      <th>Week num</th>
+      <th>Task</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weeks.each do |week| %>
+      <tr>
+        <td><%= week.user_id %></td>
+        <td><%= week.date %></td>
+        <td><%= week.week_num %></td>
+        <td><%= week.task %></td>
+        <td><%= link_to 'Show', week %></td>
+        <td><%= link_to 'Edit', edit_week_path(week) %></td>
+        <td><%= link_to 'Destroy', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Week', new_week_path %>
