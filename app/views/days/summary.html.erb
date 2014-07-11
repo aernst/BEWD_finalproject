@@ -31,7 +31,7 @@
  
 <%# @thisweek_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
 
-<% @thisweek = Week.where(:week_num => 27, :user_id => 2 ) %>
+<% @thisweek = Week.where(:week_num => (Date.today.strftime("%U").to_i), :user_id => current_user.id ) %>
 
 
 <table>
