@@ -47,7 +47,8 @@
    </tr>
   </thead>
     <tbody>
-    <% @thisweek.where(:week_num => Date.today.strftime("%U").to_i).each do |week| %>
+
+    <% @thisweek.each do |week| %>
       <tr>
         <td class="col-md-1"><%= week.week_num %></td>
       <!--   <td><%= week.date %></td> -->
