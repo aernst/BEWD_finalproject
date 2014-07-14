@@ -4,7 +4,8 @@ class DaysController < ApplicationController
 
   def summary
     # currentweek = xxx
-    @thisweek = Week.where(:week_num => (Date.today.strftime("%U").to_i), :user_id => current_user.id )
+    @thisweek = Week.where(:user_id => current_user.id )
+    #@thisweek = Week.where(:week_num => (Date.today.strftime("%U").to_i), :user_id => current_user.id )
 
     @days = current_user.days
     @weeks = current_user.weeks
