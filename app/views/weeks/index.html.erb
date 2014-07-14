@@ -1,28 +1,26 @@
-<h1>Tasks for Week</h1>
+<h1>Tasks for Week(s)</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>User</th>
+<!--       <th>User</th> -->
+      <th>Week Number</th>
       <th>Date</th>
-      <th>Week num</th>
-      <th>Task</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Task(s)</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @weeks.each do |week| %>
+    <% @weeks.order("week_num desc").each do |week| %>
       <tr>
-        <td><%= week.user_id %></td>
-        <td><%= week.date %></td>
-        <td><%= week.week_num %></td>
-        <td><%= week.task %></td>
-        <td><%= link_to 'Show', week %></td>
-        <td><%= link_to 'Edit', edit_week_path(week) %></td>
-        <td><%= link_to 'Destroy', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!--         <td><%= week.user_id %></td> -->
+        <td class="col-md-1"><%= week.week_num %></td>
+        <td class="col-md-1"><%= week.date %></td>
+        <td class="col-md-6"><%= week.task %></td>
+        <td class="col-md-4"><%= link_to 'Show', week %> |
+        <%= link_to 'Edit', edit_week_path(week) %> |
+        <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +28,5 @@
 
 <br>
 
-<%= link_to 'New Week', new_week_path %>
+<%= link_to 'New Week', new_week_path, :class => "btn btn-primary"  %>
+

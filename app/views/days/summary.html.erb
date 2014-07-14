@@ -1,32 +1,30 @@
-<h1>Summary</h1>
+<h1>Summary <small>As of: <%= Date.today %></small></h1>
 
-<table>
+<div class="col-md-6" style="padding-left: 0px;">
+<h5><u>Tasks by Day</u></h5>
+
+<table class="table">
   <thead>
     <tr>
-      <th>User</th>
       <th>Date</th>
-      <th>Task</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Task(s)</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @days.each do |day| %>
+    <% @days.order("date desc").limit(7).each do |day| %>
       <tr>
-        <td><%= day.user_id %></td>
-        <td><%= day.date %></td>
-        <td><%= day.task %></td>
-        <td><%= link_to 'Show', day %></td>
-        <td><%= link_to 'Edit', edit_day_path(day) %></td>
-        <td><%= link_to 'Destroy', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="col-md-1"><%= day.date %></td>
+        <td class="col-md-3"><%= day.task %></td>
+        <td class="col-md-2"><%= link_to 'Show', day %> | 
+        <%= link_to 'Edit', edit_day_path(day) %> | 
+        <%= link_to 'Delete', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br/>
+</div>
 
  
 <%# @thisweek_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
@@ -35,24 +33,39 @@
 <%# if @thisweek != nil  %>
 <% if !@thisweek.nil?  %>
 
-<table>
+<div class="col-md-6">
+<h5><u>Tasks this Week (Week of: <%= Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</u></h5>
+
+
+<table class="table">
   <thead>
     <tr>
-      <th>This Week</th>
+      <th>Week Number</th>
+     <!--  <th>Date</th> -->
+      <th>Task(s)</th>
+      <th>Actions</th>
    </tr>
   </thead>
     <tbody>
-    <% @thisweek.each do |week| %>
+    <% @thisweek.where(:week_num => Date.today.strftime("%U").to_i).each do |week| %>
       <tr>
-        <td><%= week.task %></td>
+        <td class="col-md-1"><%= week.week_num %></td>
+      <!--   <td><%= week.date %></td> -->
+        <td class="col-md-3"><%= week.task %></td>
+        <td class="col-md-2"><%= link_to 'Show', week %> |
+        <%= link_to 'Edit', edit_week_path(week) %> |
+        <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
 
   </tbody>
 </table>
+</div>
 <br>
 <% end %>
 
-<%= link_to 'New Day', new_day_path %>
 
-<%= link_to 'New Week', new_week_path %>
+<div class="col-md-12" style="padding-left: 0px; margin-top: 1%;"> 
+<%= link_to 'New Day', new_day_path, :class => "btn btn-primary" %>
+<%= link_to 'New Week', new_week_path, :class => "btn btn-primary"  %>
+</div>
