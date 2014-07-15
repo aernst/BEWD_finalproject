@@ -1,5 +1,6 @@
 <h1>Tasks for Day(s)</h1>
 
+
 <table class="table">
   <thead>
     <tr>
@@ -24,10 +25,10 @@
   </tbody>
 </table>
 
+<%= will_paginate @days, :class => "pagination", :style=>'float:right; margin-right: 5%;' %>
 
+<%= link_to 'Back'.html_safe, root_path, {:style=>'float:left;'}  %>
 
 <br>
-
-
 
 <%= link_to 'New Day', new_day_path, :class => "btn btn-primary" %>

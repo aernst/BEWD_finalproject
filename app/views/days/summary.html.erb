@@ -1,7 +1,13 @@
 <h1>Summary <small>As of: <%= Date.today %></small></h1>
 
 <div class="col-md-6" style="padding-left: 0px;">
-<h5><u>Tasks by Day</u></h5>
+
+<%= form_tag "/", method: "Get" do %>
+  <%= text_field_tag :q %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<h5><u>Tasks by Day</u></h5> 
 
 <table class="table">
   <thead>
@@ -24,9 +30,10 @@
     <% end %>
   </tbody>
 </table>
-</div>
 
- 
+<%= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
+<%= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
+</div>
 <%# @thisweek_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
 <!-- # if week != nil, then display -->
 
@@ -34,7 +41,7 @@
 <% if !@thisweek.nil?  %>
 
 <div class="col-md-6">
-<h5><u>Tasks this Week (Week of: <%= Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</u></h5>
+<h5><u>Tasks this Week - Week <%= Date.today.strftime("%U").to_i %> (<%=  Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</u></h5>
 
 
 <table class="table">
@@ -47,7 +54,7 @@
   </thead>
     <tbody>
 
-    <% @thisweek.each do |week| %>
+    <% @thisweek.order("week_num desc").limit(1).each do |week| %>
       <tr>
         <td class="col-md-1"><%= week.week_num %></td>
         <td class="col-md-3"><%= week.task %></td>
@@ -59,12 +66,13 @@
 
   </tbody>
 </table>
-</div>
+
 <br>
 <% end %>
-
+<%= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
+<%= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
+</div>
 
 <div class="col-md-12" style="padding-left: 0px; margin-top: 1%;"> 
-<%= link_to 'New Day', new_day_path, :class => "btn btn-primary" %>
-<%= link_to 'New Week', new_week_path, :class => "btn btn-primary"  %>
+
 </div>

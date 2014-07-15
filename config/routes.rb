@@ -1,8 +1,9 @@
 Myproject::Application.routes.draw do
-  resources :weeks
+  resources :weeks#, only: [:index]
 
   devise_for :users
-  resources :days
+  resources :days#, only: [:index]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

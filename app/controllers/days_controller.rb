@@ -14,8 +14,9 @@ class DaysController < ApplicationController
   # GET /days
   # GET /days.json
   def index
-    @days = current_user.days
+    @days = current_user.days.paginate(page: params[:page], per_page: 7)
   
+    #@products = Product.all.paginate(page: params[:page], per_page: 5)
     #find where user_id = current_user
     #@days = Day.where(:user_id => "1")
     #@days = Day.all
@@ -46,9 +47,16 @@ class DaysController < ApplicationController
 
     @day = current_user.days.new(day_params)
 
+    # @movie = Movie.new(movie_params)
+    # if @movie.save
+    #   redirect_to @movie
+    # else
+    #   render 'new'
+    # end 
+
     respond_to do |format|
       if @day.save
-        format.html { redirect_to @day, notice: 'Day was successfully created.' }
+        format.html { redirect_to days_path, notice: 'Day was successfully created.' }
         format.json { render action: 'show', status: :created, location: @day }
       else
         format.html { render action: 'new' }

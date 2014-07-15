@@ -4,7 +4,7 @@ class WeeksController < ApplicationController
   # GET /weeks
   # GET /weeks.json
   def index
-    @weeks = current_user.weeks
+    @weeks = current_user.weeks.paginate(page: params[:page], per_page: 3)
     #@weeks = Week.all
   end
 
@@ -31,7 +31,7 @@ class WeeksController < ApplicationController
 
     respond_to do |format|
       if @week.save
-        format.html { redirect_to @week, notice: 'Week was successfully created.' }
+        format.html { redirect_to weeks_path, notice: 'Week was successfully created.' }
         format.json { render action: 'show', status: :created, location: @week }
       else
         format.html { render action: 'new' }
