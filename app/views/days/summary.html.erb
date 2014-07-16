@@ -38,36 +38,37 @@
 <!-- # if week != nil, then display -->
 
 <%# if @thisweek != nil  %>
-<% if !@thisweek.nil?  %>
+
 
 <div class="col-md-6">
 <h5><u>Tasks this Week - Week <%= Date.today.strftime("%U").to_i %> (<%=  Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</u></h5>
 
+<% if !@thisweek.nil?  %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Week Number</th>
-      <th>Task(s)</th>
-      <th>Actions</th>
-   </tr>
-  </thead>
-    <tbody>
-
-    <% @thisweek.order("week_num desc").limit(1).each do |week| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td class="col-md-1"><%= week.week_num %></td>
-        <td class="col-md-3"><%= week.task %></td>
-        <td class="col-md-2"><%= link_to 'Show', week %> |
-        <%= link_to 'Edit', edit_week_path(week) %> |
-        <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+        <th>Week Number</th>
+        <th>Task(s)</th>
+        <th>Actions</th>
+     </tr>
+    </thead>
+      <tbody>
 
-  </tbody>
-</table>
+      <% @thisweek.order("week_num desc").limit(1).each do |week| %>
+        <tr>
+          <td class="col-md-1"><%= week.week_num %></td>
+          <td class="col-md-3"><%= week.task %></td>
+          <td class="col-md-2"><%= link_to 'Show', week %> |
+          <%= link_to 'Edit', edit_week_path(week) %> |
+          <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
 
-<br>
+    </tbody>
+  </table>
+
+  <br>
 <% end %>
 <%= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
 <%= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
