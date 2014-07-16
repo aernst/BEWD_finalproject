@@ -6,12 +6,14 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 
 group :development, :test do
-	gem 'sqlite3'
+	gem 'pg'
 end
 
 group :production do
 	gem 'pg'
 end
+
+gem 'pry'
 
 gem 'will_paginate', '~> 3.0'
 

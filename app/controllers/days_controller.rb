@@ -7,8 +7,11 @@ class DaysController < ApplicationController
     @thisweek = Week.where(:user_id => current_user.id )
     #@thisweek = Week.where(:week_num => (Date.today.strftime("%U").to_i), :user_id => current_user.id )
 
-     @days = current_user.days
-     @weeks = current_user.weeks
+     #@days = current_user.days
+     @days = Day.search_for(params[:q]).where(:user_id => current_user.id )
+     @weeks = Week.search_for(params[:q]).where(:user_id => current_user.id )
+    #binding.pry
+      
   end  
 
   # GET /days

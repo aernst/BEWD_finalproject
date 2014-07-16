@@ -8,7 +8,7 @@
 <% end %>
 
 <h5><u>Tasks by Day</u></h5> 
-<% if @thisweek.length > 1  %>
+<% if @days.length > 0  %>
 <table class="table">
   <thead>
     <tr>
@@ -30,6 +30,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 <%= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
 <%= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
@@ -43,6 +44,7 @@
 <div class="col-md-6">
 <h5><u>Tasks this Week - Week <%= Date.today.strftime("%U").to_i %> (<%=  Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</u></h5>
 
+<% if @thisweek.length > 0  %>
   <table class="table">
     <thead>
       <tr>
