@@ -1,6 +1,6 @@
 class WeeksController < ApplicationController
   before_action :set_week, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /weeks
   # GET /weeks.json
   def index
@@ -45,7 +45,7 @@ class WeeksController < ApplicationController
   def update
     respond_to do |format|
       if @week.update(week_params)
-        format.html { redirect_to @week, notice: 'Week was successfully updated.' }
+        format.html { redirect_to weeks_path, notice: 'Week was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

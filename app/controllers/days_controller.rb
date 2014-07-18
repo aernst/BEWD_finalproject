@@ -1,6 +1,7 @@
 class DaysController < ApplicationController
   before_action :set_day, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
 
   def summary
     # currentweek = xxx
@@ -73,7 +74,7 @@ class DaysController < ApplicationController
   def update
     respond_to do |format|
       if @day.update(day_params)
-        format.html { redirect_to @day, notice: 'Day was successfully updated.' }
+        format.html { redirect_to days_path, notice: 'Day was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
