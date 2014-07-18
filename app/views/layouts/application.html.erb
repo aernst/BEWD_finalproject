@@ -39,7 +39,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <%= link_to 'Summary', summary_path, :class => "navbar-brand" %>
+        <% if user_signed_in? %>
+          <%= link_to 'Summary', summary_path, :class => "navbar-brand" %>
+        <% else %>
+            <%= link_to 'Welcome', pages_path, :class => "navbar-brand" %>
+        <% end %>  
         <!-- <li class="active"><%= link_to 'Home', root_path %></li> -->
         <li><%= link_to 'Day', days_path %> </li>
         <li><%= link_to 'Week', weeks_path %> </li>
