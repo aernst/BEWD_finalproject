@@ -51,10 +51,12 @@
         <button type="submit" class="btn btn-default">Search</button>
       </form> -->
 
-	<%= form_tag "/", method: "Get", :class=> "navbar-form navbar-left" do %>
+	<%= form_tag "/summary", method: "Get", :class=> "navbar-form navbar-left" do %>
 		<div class="form-group">
-			<%= text_field_tag :q, params[:q], :class => "form-control", :placeholder => "search"   %>
+			<%= text_field_tag :q, params[:q], :id => "search_field", :class => "form-control", :placeholder => "search"   %>
 			<%= submit_tag "Search", :class => 'btn btn-default' %>
+      <%= submit_tag "Clear", params[:q] => "", :class => 'btn btn-default' %>
+      
 		</div>
 	<% end %>
 
