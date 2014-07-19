@@ -7,6 +7,7 @@
 <!--       <th>User</th> -->
       <th>Date</th>
       <th>Task(s)</th>
+      <th>Completed</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -16,7 +17,8 @@
       <tr>
 <!--         <td><%= day.user_id %></td> -->
         <td class="col-md-1"><%= day.date %></td>
-        <td class="col-md-6"><%= day.task %></td>
+        <td class="col-md-5"><%= day.task %></td>
+        <td class="col-md-1"><%= check_box_tag :completed, "1", day.completed, disabled: true %></td>
         <td class="col-md-5"><%= link_to 'Show', day %> | 
         <%= link_to 'Edit', edit_day_path(day) %> | 
         <%= link_to 'Delete', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -59,7 +59,7 @@
 		<div class="form-group">
 			<%= text_field_tag :q, params[:q], :id => "search_field", :class => "form-control", :placeholder => "search"   %>
 			<%= submit_tag "Search", :class => 'btn btn-default' %>
-      <%= submit_tag "Clear", params[:q] => "", :class => 'btn btn-default' %>
+      <%= link_to 'Clear', summary_path, :class => 'btn btn-default' %>
       
 		</div>
 	<% end %>

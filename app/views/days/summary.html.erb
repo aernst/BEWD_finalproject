@@ -1,5 +1,5 @@
 
-<h1>Summary <small>As of: <%= Date.today %></small></h1>
+<h1>Summary <small>(<%= Date.today %>)</small></h1>
 
 <div class="col-md-6" style="padding-left: 0px;">
 
@@ -17,6 +17,7 @@
     <tr>
       <th>Date</th>
       <th>Task(s)</th>
+      <th>Completed</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -24,8 +25,9 @@
   <tbody>
     <% @days.order("date desc").limit(7).each do |day| %>
       <tr>
-        <td class="col-md-1"><%= day.date %></td>
-        <td class="col-md-3"><%= simple_format(day.task) %></td>
+        <td class="col-md-2"><%= day.date %></td>
+        <td class="col-md-2"><%= simple_format(day.task) %></td>
+        <td class="col-md-1"><%= check_box_tag :completed, "1", day.completed, disabled: true %></td>
         <td class="col-md-2"><%= link_to 'Show', day %> | 
         <%= link_to 'Edit', edit_day_path(day) %> | 
         <%= link_to 'Delete', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -36,8 +38,8 @@
 <%# end %>
 <% end %>
 <br/>
-<%= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
-<%= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
+<%#= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
+<%#= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
 </div>
 <%# @weeks_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
 <!-- # if week != nil, then display -->
@@ -59,6 +61,7 @@
       <tr>
         <th>Week Number</th>
         <th>Task(s)</th>
+        <th>Completed</th>
         <th>Actions</th>
      </tr>
     </thead>
@@ -67,7 +70,8 @@
       <% @weeks.order("week_num desc").limit(1).each do |week| %>
         <tr>
           <td class="col-md-1"><%= week.week_num %></td>
-          <td class="col-md-3"><%= simple_format(week.task) %></td>
+          <td class="col-md-2"><%= simple_format(week.task) %></td>
+          <td class="col-md-1"><%= check_box_tag :completed, "1", week.completed, disabled: true %></td>
           <td class="col-md-2"><%= link_to 'Show', week %> |
           <%= link_to 'Edit', edit_week_path(week) %> |
           <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -80,10 +84,19 @@
 
   <br>
 <%# end %>
-<%= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
-<%= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
+<%#= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
+<%#= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
 </div>
 
-<div class="col-md-12" style="padding-left: 0px; margin-top: 1%;"> 
+<div class="col-md-12"> 
+  <div class="col-md-6" style="padding-left: 0px;"> 
+    <%= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
+    <%= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
+  </div>
+  <div class="col-md-6"> 
+    <%= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
+    <%= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
+  </div>
+
 
 </div>

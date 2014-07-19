@@ -25,6 +25,10 @@
     <%= f.label :task %><br>
     <%= f.text_area :task, :size => "60x10" %>
   </div>
+  <div class="field" type="checkbox">
+    <%= f.label :completed %> <span>  </span>
+    <%= f.check_box :completed %>
+  </div>
   <div class="actions">
     <%= f.submit "Create Task(s)" %>
   </div>

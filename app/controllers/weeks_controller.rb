@@ -72,6 +72,6 @@ class WeeksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def week_params
-      params.require(:week).permit(:user_id, :date, :week_num, :task)
+      params.require(:week).permit(:user_id, :date, :week_num, :task, :completed)
     end
 end
