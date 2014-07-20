@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  date: 2014-07-19
+  quarter_num: 1
+  task: MyText
+  completed: false
+
+two:
+  user_id: 1
+  date: 2014-07-19
+  quarter_num: 1
+  task: MyText
+  completed: false

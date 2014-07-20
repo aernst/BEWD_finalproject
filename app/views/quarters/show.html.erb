@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @quarter.user_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @quarter.date %>
+</p>
+
+<p>
+  <strong>Quarter num:</strong>
+  <%= @quarter.quarter_num %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @quarter.task %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @quarter.completed %>
+</p>
+
+<%= link_to 'Edit', edit_quarter_path(@quarter) %> |
+<%= link_to 'Back', quarters_path %>

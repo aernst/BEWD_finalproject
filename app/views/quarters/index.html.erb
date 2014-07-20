@@ -1,0 +1,38 @@
+<h1>Tasks for Quarter(s)</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+<!--       <th>User</th> -->
+      <th>Quarter</th>
+      <th>Task(s)</th>
+      <th>Completed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @quarters.order("quarter_num desc").each do |quarter| %>
+      <tr>
+<!--         <td><%= quarter.user_id %></td> -->
+        <td class="col-md-1"><%= quarter.quarter_num %></td>
+        <td class="col-md-5"><%= quarter.task %></td>
+        <td class="col-md-1"><%= check_box_tag :completed, "1", quarter.completed, disabled: true %></td>
+        <td class="col-md-5"><%= link_to 'Show', quarter %> | 
+        <%= link_to 'Edit', edit_quarter_path(quarter) %> | 
+        <%= link_to 'Delete', quarter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @quarters, :class => "pagination", :style=>'float:right; margin-right: 5%;' %>
+
+
+<%= link_to 'Back'.html_safe, summary_path, {:style=>'float:left;'}  %>
+
+<br>
+
+<%= link_to 'New Quarter', new_quarter_path, :class => "btn btn-primary" %>

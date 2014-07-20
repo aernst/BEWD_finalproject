@@ -1,4 +1,6 @@
 Myproject::Application.routes.draw do
+  resources :quarters
+
   get "pages/index"
   resources :weeks#, only: [:index]
 
