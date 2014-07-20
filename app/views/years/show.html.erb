@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @year.user_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @year.date %>
+</p>
+
+<p>
+  <strong>Quarter num:</strong>
+  <%= @year.quarter_num %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @year.task %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @year.completed %>
+</p>
+
+<%= link_to 'Edit', edit_year_path(@year) %> |
+<%= link_to 'Back', years_path %>

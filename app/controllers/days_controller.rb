@@ -9,10 +9,17 @@ class DaysController < ApplicationController
     #@thisweek = Week.where(:week_num => (Date.today.strftime("%U").to_i), :user_id => current_user.id )
 
      #@days = current_user.days
-     @days = Day.search_for(params[:q]).where(:user_id => current_user.id )
-     @weeks = Week.search_for(params[:q]).where(:user_id => current_user.id )
+     @days = Day.where(:user_id => current_user.id )
+     @weeks = Week.where(:user_id => current_user.id )
     #binding.pry
       
+  end  
+
+  def search
+     @days = Day.search_for(params[:q]).paginate(page: params[:page], per_page: 3).where(:user_id => current_user.id )
+     @weeks = Week.search_for(params[:q]).paginate(page: params[:page], per_page: 3).where(:user_id => current_user.id )
+     @quarters = Quarter.search_for(params[:q]).paginate(page: params[:page], per_page: 2).where(:user_id => current_user.id )
+     @years = Year.search_for(params[:q]).paginate(page: params[:page], per_page: 2).where(:user_id => current_user.id )
   end  
 
   # GET /days

@@ -1,0 +1,150 @@
+<h1>Search Summary</h1>
+
+<div class="col-md-12" style="padding-left: 0px;">
+
+
+
+<h5><u>Tasks by Day</u></h5> 
+<%# if @days.length > 0  %>
+<% if @days.empty? %>
+      <br/>
+      <p><i>No search result</i></p>
+<% else %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Task(s)</th>
+      <th>Completed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @days.order("date desc").each do |day| %>
+      <tr>
+        <td class="col-md-2"><%= day.date %></td>
+        <td class="col-md-5"><%= simple_format(day.task) %></td>
+        <td class="col-md-1"><%= check_box_tag :completed, "1", day.completed, disabled: true %></td>
+        <td class="col-md-2"><%= link_to 'Show', day %> | 
+        <%= link_to 'Edit', edit_day_path(day) %> | 
+        <%= link_to 'Delete', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @days, :class => "pagination", :style=>'float:right; margin-right: 5%;' %>
+
+<%# end %>
+<% end %>
+<br/>
+
+<h5><u>Tasks by Week</u></h5> 
+ <% if @weeks.empty? %>
+        <br/>
+           <p><i>No search result</i></p>
+  <% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Task(s)</th>
+        <th>Completed</th>
+        <th>Actions</th>
+     </tr>
+    </thead>
+      <tbody>
+
+      <% @weeks.order("week_num desc").each do |week| %>
+        <tr>
+          <td class="col-md-2"><%= week.week_num %></td>
+          <td class="col-md-5"><%= simple_format(week.task) %></td>
+          <td class="col-md-1"><%= check_box_tag :completed, "1", week.completed, disabled: true %></td>
+          <td class="col-md-2"><%= link_to 'Show', week %> |
+          <%= link_to 'Edit', edit_week_path(week) %> |
+          <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+  <%= will_paginate @weeks, :class => "pagination", :style=>'float:right; margin-right: 5%;' %>
+  <% end %>
+
+
+<br/>
+
+<h5><u>Tasks by Quarter</u></h5> 
+ <% if @quarters.empty? %>
+        <br/>
+           <p><i>No search result</i></p>
+  <% else %>
+
+  <table class="table">
+  <thead>
+    <tr>
+<!--       <th>User</th> -->
+      <th>Quarter</th>
+      <th>Year</th>
+      <th>Task(s)</th>
+      <th>Completed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @quarters.order("quarter_num desc").each do |quarter| %>
+      <tr>
+<!--         <td><%= quarter.user_id %></td> -->
+        <td class="col-md-1"><%= quarter.quarter_num %></td>
+        <td class="col-md-1"><%= quarter.date.strftime("%Y") %></td>
+        <td class="col-md-5"><%= quarter.task %></td>
+        <td class="col-md-1"><%= check_box_tag :completed, "1", quarter.completed, disabled: true %></td>
+        <td class="col-md-2"><%= link_to 'Show', quarter %> | 
+        <%= link_to 'Edit', edit_quarter_path(quarter) %> | 
+        <%= link_to 'Delete', quarter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @quarters, :class => "pagination", :style=>'float:right; margin-right: 5%;' %>
+ <% end %>
+
+<br/>
+
+<h5><u>Tasks by Year</u></h5> 
+ <% if @years.empty? %>
+        <br/>
+           <p><i>No search result</i></p>
+  <% else %>
+
+<table class="table">
+  <thead>
+    <tr>
+<!--       <th>User</th> -->
+      <th>Year</th>
+      <th>Task(s)</th>
+      <th>Completed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @years.order("quarter_num desc").each do |year| %>
+      <tr>
+<!--         <td><%= year.user_id %></td> -->
+        <td class="col-md-2"><%= year.quarter_num %></td>
+        <td class="col-md-5"><%= year.task %></td>
+        <td class="col-md-1"><%= check_box_tag :completed, "1", year.completed, disabled: true %></td>
+        <td class="col-md-2"><%= link_to 'Show', year %> | 
+        <%= link_to 'Edit', edit_year_path(year) %> | 
+        <%= link_to 'Delete', year, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @years, :class => "pagination", :style=>'float:right; margin-right: 5%;' %>
+  <% end %>

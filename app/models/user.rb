@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   has_many :days
   has_many :weeks
   has_many :quarters
+  has_many :years
 end

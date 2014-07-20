@@ -1,4 +1,6 @@
 Myproject::Application.routes.draw do
+  resources :years
+
   resources :quarters
 
   get "pages/index"
@@ -17,6 +19,7 @@ Myproject::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  get 'search' => 'days#search'
   get 'summary' => 'days#summary'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

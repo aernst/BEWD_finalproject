@@ -6,6 +6,7 @@
     <tr>
 <!--       <th>User</th> -->
       <th>Quarter</th>
+      <th>Year</th>
       <th>Task(s)</th>
       <th>Completed</th>
       <th>Actions</th>
@@ -18,6 +19,7 @@
       <tr>
 <!--         <td><%= quarter.user_id %></td> -->
         <td class="col-md-1"><%= quarter.quarter_num %></td>
+        <td class="col-md-1"><%= quarter.date.strftime("%Y") %></td>
         <td class="col-md-5"><%= quarter.task %></td>
         <td class="col-md-1"><%= check_box_tag :completed, "1", quarter.completed, disabled: true %></td>
         <td class="col-md-5"><%= link_to 'Show', quarter %> | 

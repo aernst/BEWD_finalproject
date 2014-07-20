@@ -1,0 +1,39 @@
+<h1>Tasks for Year(s)</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+<!--       <th>User</th> -->
+      <th>Year</th>
+      <th>Task(s)</th>
+      <th>Completed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @years.order("quarter_num desc").each do |year| %>
+      <tr>
+<!--         <td><%= year.user_id %></td> -->
+        <td class="col-md-1"><%= year.quarter_num %></td>
+        <td class="col-md-5"><%= year.task %></td>
+        <td class="col-md-1"><%= check_box_tag :completed, "1", year.completed, disabled: true %></td>
+        <td class="col-md-5"><%= link_to 'Show', year %> | 
+        <%= link_to 'Edit', edit_year_path(year) %> | 
+        <%= link_to 'Delete', year, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @years, :class => "pagination", :style=>'float:right; margin-right: 5%;' %>
+
+
+<%= link_to 'Back'.html_safe, summary_path, {:style=>'float:left;'}  %>
+
+<br>
+
+<%= link_to 'New year', new_year_path, :class => "btn btn-primary" %>
+
