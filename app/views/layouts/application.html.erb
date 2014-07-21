@@ -183,9 +183,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
-         <li><%= link_to 'Summary', summary_path, :class => "navbar-brand" %></li>
+         <li style="font-size: 125%; font-weight:bold;"><%= link_to 'Summary', summary_path %></li>
         <% else %>
-         <li> <%= link_to 'Welcome', pages_path, :class => "navbar-brand" %></li>
+         <li style="font-size: 125%; font-weight:bold;"> <%= link_to 'Welcome', pages_path %></li>
         <% end %>  
         <!-- <li class="active"><%= link_to 'Home', root_path %></li> -->
         <li><%= link_to 'Day', days_path %> </li>
