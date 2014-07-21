@@ -1,7 +1,7 @@
 
 <h1>Summary <small>(<%= Date.today %>)</small></h1>
 
-<div class="col-md-6" style="padding-left: 0px;">
+<div class="col-md-6" style="padding-left: 0px; padding-right: 30px;">
 
 
 
@@ -37,17 +37,18 @@
 </table>
 <%# end %>
 <% end %>
-<br/>
-<%#= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
-<%#= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
+
+<%= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
+<%= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
 </div>
+ <br/>
 <%# @weeks_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
 <!-- # if week != nil, then display -->
 
 <%# if @weeks != nil  %>
 
 
-<div class="col-md-6">
+<div class="col-md-6" style="padding-left: 0px;">
 <h5><u>Tasks this Week - Week <%= Date.today.strftime("%U").to_i %> (<%=  Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</u></h5>
 
 <%# if current_user.try(:superuser?) %>
@@ -82,21 +83,20 @@
   </table>
   <% end %>
 
-  <br>
 <%# end %>
-<%#= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
-<%#= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
+<%= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
+<%= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
 </div>
 
-<div class="col-md-12"> 
+<!-- <div class="col-md-12"> 
   <div class="col-md-6" style="padding-left: 0px;"> 
-    <%= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
-    <%= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
+    <%#= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary" %> 
+    <%#= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
   </div>
   <div class="col-md-6"> 
-    <%= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
-    <%= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
+    <%#= link_to 'New Task - Week', new_week_path, :class => "btn btn-primary"  %>
+    <%#= link_to 'See more Tasks'.html_safe, weeks_path, {:style=>'float:right;'}  %>
   </div>
 
 
-</div>
+</div> -->
