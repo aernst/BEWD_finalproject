@@ -7,7 +7,7 @@
       <th>Week Number</th>
       <th>Year</th>
       <th>Task(s)</th>
-      <th>Completed</th>
+      <th style="text-align: center; ">Completed</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -18,8 +18,8 @@
 <!--         <td><%= week.user_id %></td> -->
         <td class="col-md-1"><%= week.week_num %></td>
         <td class="col-md-1"><%= week.date.strftime("%Y") %></td>
-        <td class="col-md-5"><%= week.task %></td>
-        <td class="col-md-1"><%= check_box_tag :completed, "1", week.completed, disabled: true %></td>
+        <td class="col-md-5"><%= simple_format(week.task) %></td>
+        <td class="col-md-1" style="text-align: center; "><%= check_box_tag :completed, "1", week.completed, disabled: true %></td>
         <td class="col-md-4"><%= link_to 'Show', week %> |
         <%= link_to 'Edit', edit_week_path(week) %> |
         <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>

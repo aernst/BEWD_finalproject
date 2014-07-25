@@ -5,7 +5,7 @@
 
 
 
-<h5><u>Tasks by Day</u></h5> 
+<h5 style="color:#2F6F9F;"><u><b>Tasks by Day</b></u></h5> 
 <%# if @days.length > 0  %>
 <% if @days.empty? %>
       <br/>
@@ -17,7 +17,7 @@
     <tr>
       <th>Date</th>
       <th>Task(s)</th>
-      <th>Completed</th>
+      <th style="text-align: center; ">Completed</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -26,11 +26,24 @@
     <% @days.order("date desc").limit(7).each do |day| %>
       <tr>
         <td class="col-md-2"><%= day.date %></td>
-        <td class="col-md-2"><%= simple_format(day.task) %></td>
-        <td class="col-md-1"><%= check_box_tag :completed, "1", day.completed, disabled: true %></td>
-        <td class="col-md-2"><%= link_to 'Show', day %> | 
-        <%= link_to 'Edit', edit_day_path(day) %> | 
-        <%= link_to 'Delete', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="col-md-3"><%= simple_format(day.task) %></td>
+        <td class="col-md-1" style="text-align: center; "><%= check_box_tag :completed, "1", day.completed, disabled: true %></td>
+        <td class="col-md-1"><%#= link_to 'Show', day %>
+
+      <%= link_to day, class: "" do %>
+          <i class="glyphicon glyphicon-file"></i>
+      <% end %>
+
+         | 
+        <%#= link_to 'Edit', edit_day_path(day) %> 
+
+      <%= link_to edit_day_path(day), class: "" do %>
+          <i class="glyphicon glyphicon-cog"></i>
+      <% end %>
+
+        | 
+        <%= link_to '', day, method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-remove-circle"  %></td>
+
       </tr>
     <% end %>
   </tbody>
@@ -41,7 +54,6 @@
 <%= link_to 'New Task - Day', new_day_path, :class => "btn btn-primary", :style => "color: #FFF;" %> 
 <%= link_to 'See more Tasks'.html_safe, days_path, {:style=>'float:right;'}  %>
 </div>
- <br/>
 <%# @weeks_old = Week.find_by_week_num(Date.today.strftime("%U").to_i) %>
 <!-- # if week != nil, then display -->
 
@@ -49,7 +61,7 @@
 
 
 <div class="col-md-6" style="padding-left: 0px;">
-<h5><u>Tasks this Week - Week <%= Date.today.strftime("%U").to_i %> (<%=  Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</u></h5>
+<h5 style="color:#2F6F9F;"><u><b>Tasks this Week - Week <%= Date.today.strftime("%U").to_i %> (<%=  Date.commercial(2014, Date.today.strftime("%U").to_i) %>)</b></u></h5>
 
 <%# if current_user.try(:superuser?) %>
 <%# if @weeks.length > 0  %>
@@ -62,7 +74,7 @@
       <tr>
         <th>Week</th>
         <th>Task(s)</th>
-        <th>Completed</th>
+        <th style="text-align:center;">Completed</th>
         <th>Actions</th>
      </tr>
     </thead>
@@ -71,12 +83,25 @@
       <% @weeks.order("week_num desc").limit(1).each do |week| %>
         <tr>
           <td class="col-md-1"><%= week.week_num %></td>
-          <td class="col-md-2"><%= simple_format(week.task) %></td>
-          <td class="col-md-1"><%= check_box_tag :completed, "1", week.completed, disabled: true %></td>
-          <td class="col-md-2"><%= link_to 'Show', week %> |
-          <%= link_to 'Edit', edit_week_path(week) %> |
-          <%= link_to 'Delete', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+          <td class="col-md-3"><%= simple_format(week.task) %></td>
+          <td class="col-md-1" style="text-align: center; "><%= check_box_tag :completed, "1", week.completed, disabled: true %></td>
+          <td class="col-md-1">
+
+      <%= link_to week, class: "" do %>
+          <i class="glyphicon glyphicon-file"></i>
+      <% end %>
+
+         | 
+        <%#= link_to 'Edit', edit_day_path(day) %> 
+
+      <%= link_to edit_week_path(week), class: "" do %>
+          <i class="glyphicon glyphicon-cog"></i>
+      <% end %>
+
+        | 
+        <%= link_to '', week, method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-remove-circle"  %></td>
+
+      </tr>
       <% end %>
       
     </tbody>
