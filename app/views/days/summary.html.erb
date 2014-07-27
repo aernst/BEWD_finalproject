@@ -80,7 +80,7 @@
     </thead>
       <tbody>
 
-      <% @weeks.order("week_num desc").limit(1).each do |week| %>
+      <% @weeks.order("week_num desc").limit(2).each do |week| %>
         <tr>
           <td class="col-md-1"><%= week.week_num %></td>
           <td class="col-md-3"><%= simple_format(week.task) %></td>

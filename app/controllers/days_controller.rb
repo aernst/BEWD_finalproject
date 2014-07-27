@@ -26,12 +26,12 @@ class DaysController < ApplicationController
   # GET /days.json
   def index
     @days = current_user.days.paginate(page: params[:page], per_page: 7)
-  
+  end
     #@products = Product.all.paginate(page: params[:page], per_page: 5)
     #find where user_id = current_user
     #@days = Day.where(:user_id => "1")
     #@days = Day.all
-  end
+  #end
 
   # GET /days/1
   # GET /days/1.json
